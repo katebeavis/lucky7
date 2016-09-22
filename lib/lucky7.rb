@@ -1,17 +1,19 @@
 require './lib/die'
 require './lib/player'
 require './lib/bet_position'
+require './lib/dealer'
 require 'pry'
 require 'pry-nav'
 
 class Lucky7
-  attr_accessor :dice, :player1, :player2, :players, :bet_position
+  attr_accessor :dice, :player1, :player2, :players, :bet_position, :dealer
 
   def initialize
     @dice = Die.new
     @player1 = Player.new
     @player2 = Player.new
     @bet_position = BetPosition.new
+    @dealer = Dealer.new
   end
 
   def start
@@ -37,9 +39,11 @@ class Lucky7
         bet = gets.chomp.to_i
       end
       player1.place_bet(bet.to_i)
+      dealer.receive_bet(bet.to_i)
       puts "Output: #{roll_dice}"
       dice_roll = dice.value
-      player1.calculate_new_total(dice_roll, choice)
+      winnings = dealer.calculate_winnings(dice_roll, choice)
+      player1.calculate_new_total(winnings)
       puts "Total: £#{player1.money} \n"
     end
   end

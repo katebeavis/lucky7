@@ -16,13 +16,7 @@ class Player
     bet <= @money
   end
 
-  def calculate_new_total(dice_roll, choice)
-    if dice_roll == 7 && choice == 7
-      @money += (@bet * 6)
-    elsif (dice_roll > 7 && choice > 7) || (dice_roll < 7 && choice < 7)
-      @money += (@bet * 2)
-    else
-      @money -= @bet
-    end
+  def calculate_new_total(winnings)
+    @money += winnings
   end
 end

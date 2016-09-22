@@ -22,7 +22,7 @@ describe 'BetPosition' do
     end
 
     it 'lets a user make a choice that is valid' do
-      position = 'equal'
+      position = 'less than 7'
       expect(bet_position.position_valid?(position)).to eq true
     end
 

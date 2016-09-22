@@ -12,6 +12,6 @@ class BetPosition
   end
 
   def position_valid?(position)
-    position.downcase == ('less than 7' && 'greater than 7' && 'equal')
+    ['equal', 'greater than 7', 'less than 7'].include?(position.downcase)
   end
 end
