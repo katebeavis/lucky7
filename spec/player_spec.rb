@@ -20,24 +20,6 @@ describe 'Player' do
     end
   end
 
-  context 'choosing a number' do
-
-    it "it assigns '< 7' inputs to a number less than 7" do
-      input = "Less than 7"
-      expect(player.convert_choice_to_number(input)).to eq(1)
-    end
-
-    it "assigns '> 7' inputs to a number more than 7" do
-      input = "Greater than 7"
-      expect(player.convert_choice_to_number(input)).to eq(8)
-    end
-
-    it "assigns '== 7' inputs to 7" do
-      input = "Equal"
-      expect(player.convert_choice_to_number(input)).to eq(7)
-    end
-  end
-
   context 'placing a bet' do
     let(:money) { money = 100 }
 
@@ -45,7 +27,7 @@ describe 'Player' do
       expect{player.place_bet(10)}.to change{player.bet}.from(0).to (10)
     end
 
-    it 'raises an error message when the bet is greater than money available' do
+    it 'does not let a user place a bet that is greater than money available' do
       expect(player.bet_valid?(110)).to be false
     end
   end

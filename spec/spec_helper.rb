@@ -1,5 +1,6 @@
 require './lib/die'
 require './lib/lucky7'
 require './lib/player'
+require './lib/bet_position'
 require 'pry'
 require 'pry-nav'

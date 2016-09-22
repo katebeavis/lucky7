@@ -1,15 +1,17 @@
 require './lib/die'
 require './lib/player'
+require './lib/bet_position'
 require 'pry'
 require 'pry-nav'
 
 class Lucky7
-  attr_accessor :dice, :player1, :player2, :players
+  attr_accessor :dice, :player1, :player2, :players, :bet_position
 
   def initialize
     @dice = Die.new
     @player1 = Player.new
     @player2 = Player.new
+    @bet_position = BetPosition.new
   end
 
   def start
@@ -23,7 +25,11 @@ class Lucky7
       puts "Turn: #{turns}"
       puts "Enter your choice - 'Less than 7', 'Greater than 7', or 'Equal'"
       choice = gets.chomp
-      choice = player1.convert_choice_to_number(choice)
+      while bet_position.position_valid?(choice) == false
+        puts "Please enter a valid choice - 'Less than 7', 'Greater than 7', or 'Equal'"
+        choice = gets.chomp
+      end
+      choice = bet_position.convert_position_to_number(choice)
       puts "place your bet"
       bet = gets.chomp.to_i
       while player1.bet_valid?(bet) == false
@@ -47,5 +53,5 @@ class Lucky7
   end
 end
 
-# lucky7 = Lucky7.new
-# lucky7.start
+lucky7 = Lucky7.new
+lucky7.start
