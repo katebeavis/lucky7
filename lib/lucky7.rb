@@ -18,8 +18,12 @@ class Lucky7
     name = gets.chomp
     player1.name = name
     puts "Enter your choice - 'Less than 7', 'Greater than 7', or 'Equal'"
-    input = gets.chomp
-    player1.convert_choice_to_number(input)
+    choice = gets.chomp
+    choice = player1.convert_choice_to_number(choice)
+    puts "place your bet"
+    bet = gets.chomp
+    player1.bet = bet
+    puts "#{player1.bet}"
     puts "Output: #{roll_dice}"
   end
 

@@ -1,10 +1,11 @@
 class Player
 
-  attr_accessor :name, :money
+  attr_accessor :name, :money, :bet
 
   def initialize
     @name = name
     @money = 100
+    @bet = 0
   end
 
   def convert_choice_to_number(input)
@@ -15,6 +16,16 @@ class Player
       choice = 8
     elsif input == 'equal'
       choice = 7
+    end
+  end
+
+  def calculate_new_total(bet, dice_roll, choice)
+    if dice_roll == 7 && choice == 7
+      @money += (bet * 6)
+    elsif (dice_roll > 7 && choice > 7) || (dice_roll < 7 && choice < 7)
+      @money += (bet * 2)
+    else
+      @money -= bet
     end
   end
 
