@@ -15,12 +15,12 @@ describe 'Player' do
     end
 
     it "it assigns '< 7' inputs to a number less than 7" do
-      input = "Less"
+      input = "Less than 7"
       expect(player.convert_choice_to_number(input)).to eq(1)
     end
 
     it "assigns '> 7' inputs to a number more than 7" do
-      input = "Greater"
+      input = "Greater than 7"
       expect(player.convert_choice_to_number(input)).to eq(8)
     end
 

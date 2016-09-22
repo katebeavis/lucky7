@@ -17,10 +17,10 @@ class Lucky7
     puts 'What is your name?'
     name = gets.chomp
     player1.name = name
-    puts "#{player1.name}: #{player1.money}"
-    puts "Enter your choice"
+    puts "Enter your choice - 'Less than 7', 'Greater than 7', or 'Equal'"
     input = gets.chomp
-    puts player1.convert_choice_to_number(input)
+    player1.convert_choice_to_number(input)
+    puts "Output: #{roll_dice}"
   end
 
   def roll_dice

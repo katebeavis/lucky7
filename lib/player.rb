@@ -7,20 +7,15 @@ class Player
     @money = 100
   end
 
-  def roll_dice
-    dice.roll
-  end
-
   def convert_choice_to_number(input)
     input = downcase_input(input)
-    if input == 'less'
+    if input == 'less than 7'
       choice = 1
-    elsif input == 'greater'
+    elsif input == 'greater than 7'
       choice = 8
     elsif input == 'equal'
       choice = 7
     end
-    raise choice.inspect
   end
 
   private
