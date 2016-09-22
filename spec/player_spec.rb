@@ -12,7 +12,6 @@ describe 'Player' do
     end
 
     it 'starts with a money total of 100' do
-      puts player.inspect
       expect(player.money).to eq(100)
     end
 
@@ -40,51 +39,45 @@ describe 'Player' do
   end
 
   context 'calculating whether the player wins or loses money' do
+
+    let(:bet) { bet = 10 }
+    let(:greater_than_roll) { dice_roll = 8 }
+    let(:less_than_roll) { dice_roll = 4 }
+    let(:equal_roll) { dice_roll = 7 }
+
     context 'the player has chosen equal' do
       it 'multiplies the bet by 6 if the dice is 7' do
-        bet = 10
-        dice_roll = 7
         choice = 7
-        expect{player.calculate_new_total(bet, dice_roll, choice)}.to change{player.money}.from(100).to (160)
+        expect{player.calculate_new_total(bet, equal_roll, choice)}.to change{player.money}.from(100).to (160)
       end
 
       it 'subtracts the bet from the total if the dice is NOT than 7' do
-        bet = 10
-        dice_roll = 8
         choice = 7
-        expect{player.calculate_new_total(bet, dice_roll, choice)}.to change{player.money}.from(100).to (90)
+        expect{player.calculate_new_total(bet, greater_than_roll, choice)}.to change{player.money}.from(100).to (90)
       end
     end
 
     context 'the player has chosen greater than 7' do
       it 'doubles the bet if the dice is greater than 7' do
-        bet = 10
-        dice_roll = 10
         choice = 8
-        expect{player.calculate_new_total(bet, dice_roll, choice)}.to change{player.money}.from(100).to (120)
+        expect{player.calculate_new_total(bet, greater_than_roll, choice)}.to change{player.money}.from(100).to (120)
       end
 
       it 'subtracts the bet from the total if the dice is NOT greater than 7' do
-        bet = 10
-        dice_roll = 7
         choice = 8
-        expect{player.calculate_new_total(bet, dice_roll, choice)}.to change{player.money}.from(100).to (90)
+        expect{player.calculate_new_total(bet, equal_roll, choice)}.to change{player.money}.from(100).to (90)
       end
     end
 
     context 'the player has chosen less than 7' do
       it 'doubles the bet if the dice is less than 7' do
-        bet = 10
-        dice_roll = 4
         choice = 2
-        expect{player.calculate_new_total(bet, dice_roll, choice)}.to change{player.money}.from(100).to (120)
+        expect{player.calculate_new_total(bet, less_than_roll, choice)}.to change{player.money}.from(100).to (120)
       end
 
       it 'subtracts the bet from the total if the dice is NOT less than 7' do
-        bet = 10
-        dice_roll = 8
         choice = 2
-        expect{player.calculate_new_total(bet, dice_roll, choice)}.to change{player.money}.from(100).to (90)
+        expect{player.calculate_new_total(bet, greater_than_roll, choice)}.to change{player.money}.from(100).to (90)
       end
     end
   end
