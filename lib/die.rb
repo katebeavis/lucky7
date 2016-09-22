@@ -8,6 +8,6 @@ class Die
   end
 
   def roll
-    @value = 1 + rand(6)
+    @value = 1 + rand(12)
   end
 end

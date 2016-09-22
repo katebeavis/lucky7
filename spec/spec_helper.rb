@@ -1,4 +1,5 @@
 require './lib/die'
 require './lib/lucky7'
+require './lib/player'
 require 'pry'
 require 'pry-nav'
